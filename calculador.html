@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Calculador de aporte ambiental Energe</title>
+  <link rel='stylesheet' href='https://bootswatch.com/4/cerulean/bootstrap.css'><link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="./img/logo.png" alt="logo" width="150px">
+      </div>
+      <div class="menu"></div>
+    </nav>
+  </header>
+
+<div class="container col-sm-12 mt-5">
+  <h2 id="titulo-inicial">Calculador de aporte ambiental</h2>
+  <p class="container mt-5 mb-5"id="leyenda">Para utilizar el siguiente formulario debe completar los campos asignados de forma obligatoria y una vez completados los mismos, se debe hacer click en "Agregar producto". Recuerde que tiene un máximo de 10 productos por consulta.</p>
+<br/>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+        <form>
+          <label for="panelesNuevos" class="form-label">Cantidad de Paneles</label>
+          <input type="text" class="form-control" id="panelesNuevos">  
+        </form>
+    </div>
+    <div class="col-sm-4">
+        <form>
+          <label for="potenciaNueva" class="form-label">Potencia panel</label>
+          <input type="number" class="form-control" id="potenciaNueva">       
+        </form>
+    </div>
+    <div class="col-sm-4">
+        <form>
+          <label for="rendimiento" class="form-label">Rendimiento kWh/kWp</label>
+          <input type="number" class="form-control" id="rendimiento"><br>
+          
+        </form>
+    </div>
+  </div>
+<div> 
+  
+<div class="seccion-boton">
+    <button type="button" id="btnPrincipal" class="btn btn-primary">Calcular aporte</button>
+</div> 
+</div class="row">  
+  <div class="col-sm-12">
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>Potencia instalada</th>
+          <th>Generación kWh/Año</th>
+          <th>Generación MWh/Año</th>
+          <th>CO2 Evitado (kg)</th>
+          <th>Equivalente a lo aborvido en 1 año (en un Algarrobo)</th>
+        </tr>
+        <tr>
+          <th><div id="resultado2"></div></th>
+          <th><div id="resultado3"></div></th>
+          <th><div id="resultado"></div></th>
+          <th><div id="resultado4"></div></th>
+          <th><div id="resultado5"></div></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+   
+
+
+<!-- ---------Menú lateral----------->
+
+<div class="sidebar">
+  <div class="logo-details">
+      <i class='bx bx-menu' id="btn" ></i>
+  </div>
+  <ul class="nav-list">
+ <!--    <li>
+        <i class='bx bx-search' ></i>
+       <input type="text" placeholder="Buscar...">
+       <span class="tooltip">Search</span>
+    </li> -->
+    <li>
+      <a href="calculador.html">
+        <i class='bx bx-calculator'></i>
+        <span class="links_name">Calculador</span>
+      </a>
+       <span class="tooltip">Calculador</span>
+    </li>
+    <li>
+     <a href="index.html">
+       <i class='bx bx-folder' ></i>
+       <span class="links_name">Histórico</span>
+     </a>
+     <span class="tooltip">Histórico</span>
+   </li>
+<!--      <li>
+     <a href="#">
+       <i class='bx bx-chat' ></i>
+       <span class="links_name">Messages</span>
+     </a>
+     <span class="tooltip">Messages</span>
+   </li> -->
+   <li>
+     <a href="analitica.html">
+       <i class='bx bx-pie-chart-alt-2' ></i>
+       <span class="links_name">Analítica</span>
+     </a>
+     <span class="tooltip">Anaítica</span>
+   </li>
+<!--      <li>
+     <a href="#">
+       <i class='bx bx-folder' ></i>
+       <span class="links_name">Histórico</span>
+     </a>
+     <span class="tooltip">Histórico</span>
+   </li> -->
+<!--      <li>
+     <a href="#">
+       <i class='bx bx-cart-alt' ></i>
+       <span class="links_name">Order</span>
+     </a>
+     <span class="tooltip">Order</span>
+   </li>
+   <li>
+     <a href="#">
+       <i class='bx bx-heart' ></i>
+       <span class="links_name">Saved</span>
+     </a>
+     <span class="tooltip">Saved</span>
+   </li>
+   <li>
+     <a href="#">
+       <i class='bx bx-cog' ></i>
+       <span class="links_name">Setting</span>
+     </a>
+     <span class="tooltip">Setting</span>
+   </li> -->
+   <li class="profile">
+       <div class="profile-details">
+         <!--<img src="profile.jpg" alt="profileImg">-->
+         <div class="name_job">
+           <div class="name">Energe</div>
+           <div class="job">Web designer</div>
+         </div>
+       </div>
+       <i class='bx bx-log-out' id="log_out" ></i>
+   </li>
+  </ul>
+</div>
+
+<script>
+let sidebar = document.querySelector(".sidebar");
+let closeBtn = document.querySelector("#btn");
+let searchBtn = document.querySelector(".bx-search");
+
+closeBtn.addEventListener("click", ()=>{
+  sidebar.classList.toggle("open");
+  menuBtnChange();//calling the function(optional)
+});
+
+searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+  sidebar.classList.toggle("open");
+  menuBtnChange(); //calling the function(optional)
+});
+
+// following are the code to change sidebar button(optional)
+function menuBtnChange() {
+ if(sidebar.classList.contains("open")){
+   closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+ }else {
+   closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+ }
+}
+</script>
+<!-- -----------Hasta acá llega el menú lareal------------ -->  
+  
+
+<script src="./script.js"></script>
+
+</body>
+
+
+
+
+
+
+
+
+
+</html>
